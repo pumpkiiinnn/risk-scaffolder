@@ -1,11 +1,17 @@
-use dialoguer::{Input, theme::ColorfulTheme};
 use console::style;
+use dialoguer::{theme::ColorfulTheme, Input};
 use java_scaffold::create_project;
 
 fn main() {
-    println!("{}", style("欢迎使用风控Java项目脚手架工具！").cyan().bold());
-    println!("{}", style("这个工具将帮助你创建一个标准的风控Java多模块项目，默认提供分析库等功能。").cyan());
-    
+    println!(
+        "{}",
+        style("欢迎使用风控Java项目脚手架工具！").cyan().bold()
+    );
+    println!(
+        "{}",
+        style("这个工具将帮助你创建一个标准的风控Java多模块项目，默认提供分析库等功能。").cyan()
+    );
+
     // 获取项目名称
     let project_name: String = Input::with_theme(&ColorfulTheme::default())
         .with_prompt("请输入项目名称")
@@ -23,21 +29,22 @@ fn main() {
 
     // 使用当前目录作为输出路径
     let output_path = ".";
-    
+
     println!("\n{}", style("正在创建项目...").green());
     create_project(&project_name, output_path);
-    
+
     println!("\n{}", style("✨ 项目创建成功！").green().bold());
     println!("\n项目结构：");
-    println!("{}
+    println!(
+        "{}
 ├── pom.xml
 ├── {}-entity/
 ├── {}-backend/
 ├── {}-listener/
-└── {}-analysis/", 
+└── {}-analysis/",
         project_name, project_name, project_name, project_name, project_name
     );
-    
+
     println!("\n{}", style("下一步：").yellow().bold());
     println!("1. cd {}", project_name);
     println!("2. mvn install");

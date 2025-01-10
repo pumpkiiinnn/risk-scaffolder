@@ -54,7 +54,8 @@ pub fn generate_logback_config() -> String {
     <root level="INFO">
         <appender-ref ref="CONSOLE" />
     </root>
-</configuration>"#.to_string()
+</configuration>"#
+        .to_string()
 }
 
 pub fn generate_application_yml() -> String {
@@ -67,5 +68,6 @@ server:
   
 logging:
   level:
-    root: INFO"#.to_string()
-} 
+    root: INFO"#
+        .to_string()
+}
