@@ -1,0 +1,11 @@
+[package]
+name = "java-scaffold"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your.email@example.com>"]
+description = "一个用于创建Java多模块项目的脚手架工具"
+
+[dependencies]
+clap = "3.0"
+dialoguer = "0.11.0"
+console = "0.15.0"
