@@ -1,5 +1,5 @@
 pub mod commands;
 pub mod templates;
-pub mod utils;
+pub mod config;
 
 pub use commands::create::create_project; 

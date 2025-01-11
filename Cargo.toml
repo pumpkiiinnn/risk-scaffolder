@@ -2,7 +2,7 @@
 name = "java-scaffold"
 version = "0.1.0"
 edition = "2021"
-authors = ["Your Name <your.email@example.com>"]
+authors = ["pumpkiiinnnn@gmail.com"]
 description = "一个用于创建Java多模块项目的脚手架工具"
 
 [dependencies]

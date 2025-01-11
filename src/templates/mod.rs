@@ -1,71 +1,44 @@
-pub fn generate_root_pom(project_name: &str) -> String {
-    format!(
-        r#"<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+// 导出所有子模块
+pub mod pom;
+pub mod entity;
+pub mod backend;
+pub mod listener;
+pub mod analysis;
+pub mod common;
 
-    <groupId>com.example</groupId>
-    <artifactId>{}</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+// 从 pom 模块导出所有 pom 生成函数
+pub use pom::{
+    generate_root_pom,
+    generate_module_pom,
+};
 
-    <modules>
-        <module>{}-entity</module>
-        <module>{}-backend</module>
-        <module>{}-listener</module>
-        <module>{}-analysis</module>
-    </modules>
-</project>"#,
-        project_name, project_name, project_name, project_name, project_name
-    )
-}
+// 从 entity 模块导出实体生成函数
+pub use entity::{
+    generate_base_entity,
+    generate_user_entity,
+};
 
-pub fn generate_module_pom(project_name: &str, module_type: &str) -> String {
-    format!(
-        r#"<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+// 从 backend 模块导出后端相关函数
+pub use backend::{
+    generate_backend_application,
+    generate_user_controller,
+};
 
-    <parent>
-        <groupId>com.example</groupId>
-        <artifactId>{}</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
+// 从 listener 模块导出监听器相关函数
+pub use listener::{
+    generate_listener_application,
+    generate_redis_listener,
+};
 
-    <artifactId>{}-{}</artifactId>
-</project>"#,
-        project_name, project_name, module_type
-    )
-}
+// 从 analysis 模块导出分析相关函数
+pub use analysis::{
+    generate_analysis_application,
+    generate_spark_service,
+    generate_data_processor,
+};
 
-pub fn generate_logback_config() -> String {
-    r#"<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <root level="INFO">
-        <appender-ref ref="CONSOLE" />
-    </root>
-</configuration>"#.to_string()
-}
-
-pub fn generate_application_yml() -> String {
-    r#"spring:
-  application:
-    name: example-service
-  
-server:
-  port: 8080
-  
-logging:
-  level:
-    root: INFO"#.to_string()
-} 
+// 从 common 模块导出通用函数
+pub use common::{
+    generate_logback_config,
+    generate_application_yml,
+}; 
