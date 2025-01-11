@@ -2,8 +2,14 @@
 name = "java-scaffold"
 version = "0.1.0"
 edition = "2021"
-authors = ["pumpkiiinnnn@gmail.com"]
-description = "一个用于创建Java多模块项目的脚手架工具"
+authors = ["zoey wang<pumpkiiinnnn@gmail.com>"]
+description = "Risk project scaffolder"
+
+[target.x86_64-pc-windows-gnu]
+linker = "x86_64-w64-mingw32-gcc"
+
+[target.i686-pc-windows-gnu]
+linker = "i686-w64-mingw32-gcc"
 
 [dependencies]
 clap = "3.0"
